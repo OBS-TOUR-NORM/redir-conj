@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>Redirection</title>
+    <script>
+      (async function () {
+        const params = new URLSearchParams(window.location.search);
+        const key = params.get("key") || "";
+
+        const response = await fetch("./target.txt", { cache: "no-store" });
+        const target = (await response.text()).trim();
+
+        window.location.replace(target + "?key=" + encodeURIComponent(key));
+      })();
+    </script>
+  </head>
+  <body></body>
+</html>
